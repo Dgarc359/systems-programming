@@ -19,6 +19,5 @@ int main () {
     printf("%.1f\t%.1f\t%.2f\n", twoDarr[i][0], twoDarr[i][1], vol);
   }
 
-
   return 0;
 }
