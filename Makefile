@@ -7,5 +7,8 @@ teach: teacher-sol.c
 print-ex: print-example.c
 	gcc -o print-ex print-example.c
 
+char-io: char-io.c
+	gcc -o char-io char-io.c
+
 clean:
 	rm -rf main teach print-ex

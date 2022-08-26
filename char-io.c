@@ -1,5 +1,4 @@
-
-
+#include <stdio.h>
 
 /**
  * in C char is 8 bytes (1 bit)
@@ -22,3 +21,35 @@
  *  a, b,  ... z
  *  97, 98, ... 122
  */
+
+void main () {
+  // char c = getchar();
+  // putchar(c);
+  // print (int i = 'A'; i < 'Z'; i++) 
+  //   printf("%d\n",i);
+
+  putchar('h');
+  putchar('e');
+  putchar('l');
+  putchar('l');
+  putchar('o');
+
+  // get a whole word separated by white space
+  // tab or new line from the rest of input stream
+
+  char temp;
+  /**
+   * press ctrl + d to close buffer without inputting newline ('\n') 
+   */
+  while(1){
+    temp = getchar(); // until you press enter, data is in buffer stream
+    if ( temp == ' ' 
+      || temp == '\t' 
+      || temp == '\n' 
+      || temp == EOF
+    )
+      break;
+    
+    putchar(temp);
+  }
+}
