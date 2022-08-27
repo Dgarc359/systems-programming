@@ -22,10 +22,14 @@ void main(void) {
   printf("%d, %o, %x\n", 20, 20, 20);
 
   /**
-   * 0x20 = hex
+   * hexadecimal -> decimal: (NOTE: 0x is just the identifier for hex values in C, for our purposes, we can ignore it in calculations)
    * 2 * 16 = 32
    * 0 * 1 = 0
    * 32 + 0 = 32
+   * OR
+   * convert each digit to binary first: (SIMPLER)
+   * 20 = 0_0_1_0 | 0_0_0_0
+   * combined = 0010 0000 = 32
    * 
    * octal:
    * 1: convert 20 to binary
