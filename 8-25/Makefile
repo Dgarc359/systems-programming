@@ -1,5 +1,5 @@
 BINARIES = main teacher-sol print-example char-io
-C_FILES = main.c teacher-sol.c print-example.c char-io.c
+C_FILES := $(addsuffix .c, ${BINARIES})
 
 # `make` suffix rule for files with .c extension, use as: make main
 .c:
