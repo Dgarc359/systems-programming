@@ -1,14 +1,8 @@
-main: main.c
-	gcc -o main main.c
+.c:
+	$(CC) $(CFLAGS) $@.c $(LDFLAGS) -o $@
 
-teach: teacher-sol.c
-	gcc -o teach teacher-sol.c
-
-print-ex: print-example.c
-	gcc -o print-ex print-example.c
-
-char-io: char-io.c
-	gcc -o char-io char-io.c
+all:
+	make main && make teach && make print-ex && make char-io
 
 clean:
-	rm -rf main teach print-ex char-io
+	rm -rf main teacher-sol print-example char-io
