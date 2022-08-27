@@ -27,14 +27,14 @@ void main(void) {
    * 0 * 1 = 0
    * 32 + 0 = [32]
    * OR
-   * convert each digit to binary first: (SIMPLER)
+   * convert each digit to hex binary first: (SIMPLER)
    * 20 = 0_0_1_0 | 0_0_0_0
    * combined = 0010 0000 = [32]
    * 
-   * octal:
-   * 1: convert 20 to binary
+   * hex -> octal:
+   * 1: convert 20 to hex binary
    *  0010 0000
-   * 2: convert binary to octal (every 3 bits, is one digit in octal)
+   * 2: convert hex binary to octal binary (every 3 bits, is one digit in octal)
    * 00 100 000
    * 0    4   0 = [40]
    * 
@@ -52,6 +52,8 @@ void main(void) {
    * 
    * octal -> octal: ignore leading 0 = [20]
    *
+   * 
+   * https://www.youtube.com/watch?v=KXRyIH90shg
    * octal -> hex: 
    * 20 ->
    *    octal binary (groups of 3) 010 000 ->
