@@ -9,6 +9,7 @@ all: $(C_FILES)
 .c:
 	$(CC) $(CFLAGS) $@.c $(LDFLAGS) -o $@
 
+.PHONY: clean
 # Remove all binaries created by `make`
 clean:
 	rm -rf $(BINARIES)
