@@ -1,12 +1,13 @@
 DIRS=8-25
 pwd=${PWD}
 
-all:
-	$(foreach dir,$(DIRS), cd $(dir) && make all && cd $(pwd);)
+$(DIRS):
+	$(foreach dir,$(DIRS), $(MAKE) -C $@;)
 
-.PHONY: 8-25
+.PHONY: $(DIRS)
 $(DIRS): 
-	cd $@ && make all
+	$(MAKE) -C $@	
 
+.PHONY: clean
 clean:
-	$(foreach dir,$(DIRS), cd $(dir) && make clean && cd $(pwd);)
+	$(foreach dir,$(DIRS), $(MAKE) -C $(dir) clean;)
