@@ -7,4 +7,4 @@ C files and class notes organized by date of class
 `make all` at the root directory
 
 #### Compile specific directories
-`cd <dir> && make all` will compile all files listed in the `Makefile` in your current directory
+`make <directory-name>` will compile all files listed in the `Makefile` of the specified `directory-name`
