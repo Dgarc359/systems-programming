@@ -5,7 +5,7 @@ C_FILES := $(addsuffix .c, ${BINARIES})
 .c:
 	$(CC) $(CFLAGS) $@.c $(LDFLAGS) -o $@
 
-# `make` all files defined by FILES macro
+# `make` all files defined by C_FILES macro
 all: $(C_FILES)
 	make $(BINARIES)
 
