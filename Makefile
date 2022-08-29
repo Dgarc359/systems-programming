@@ -1,6 +1,5 @@
 TB=textbook-notes
 DIRS=8-25 $(TB)/ch1
-pwd=${PWD}
 
 .PHONY: all
 all:
