@@ -1,8 +1,10 @@
-DIRS=8-25
+TB=textbook-notes
+DIRS=8-25 $(TB)/ch1
 pwd=${PWD}
 
-$(DIRS):
-	$(foreach dir,$(DIRS), $(MAKE) -C $@;)
+.PHONY: all
+all:
+	$(foreach dir,$(DIRS), $(MAKE) --ignore-errors -C $(dir);)
 
 .PHONY: $(DIRS)
 $(DIRS): 
