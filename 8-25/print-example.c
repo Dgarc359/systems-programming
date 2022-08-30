@@ -43,6 +43,7 @@ void main(void) {
   printf("%d, %o, %x\n", 0X20, 0X20, 0X20); // prints 32, 40, 20
 
   /**
+   * NOTE: 0 is the prefix for octal in C
    * https://www.youtube.com/watch?v=YCM2JReWS10
    * octal -> decimal:
    * octal:
