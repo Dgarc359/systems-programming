@@ -48,8 +48,8 @@ void main(void) {
    * octal -> decimal:
    * octal:
    *  20 ->
-   *    octal binary (groups of 3) 010 000 ->
-   *        decimal [16]
+   *   multiply each digit by power of 8 corresponding to the position its in
+   *  2 * 8^1 + 0 * 8 ^ 0 = 16
    * 
    * octal -> octal: ignore leading 0 = [20]
    *
