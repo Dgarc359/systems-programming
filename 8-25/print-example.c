@@ -49,7 +49,11 @@ void main(void) {
    * octal:
    *  20 ->
    *   multiply each digit by power of 8 corresponding to the position its in
-   *  2 * 8^1 + 0 * 8 ^ 0 = 16
+   *     2 * 8^1 + 0 * 8 ^ 0 = 16
+   * OR
+   *  20 ->
+   *    binary = 010 000 ->
+   *      decimal = 16
    * 
    * octal -> octal: ignore leading 0 = [20]
    *
