@@ -42,5 +42,5 @@ void reverse(char str[]) {
 }
 
 void remove_second_half(char str[]) {
-
+  // ran out of time
 }
