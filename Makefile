@@ -1,5 +1,6 @@
+CN=class-notes
 TB=textbook-notes
-DIRS=8-25 $(TB)/ch1
+DIRS=$(CN)/8-25 $(CN)/8-30 $(TB)/ch1
 
 .PHONY: all
 all:
