@@ -1,5 +1,4 @@
-TB=textbook-notes
-DIRS=class-notes $(TB)/ch1
+DIRS=8-25 8-30
 
 .PHONY: all
 all:
