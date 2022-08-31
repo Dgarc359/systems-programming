@@ -43,12 +43,17 @@ void main(void) {
   printf("%d, %o, %x\n", 0X20, 0X20, 0X20); // prints 32, 40, 20
 
   /**
+   * NOTE: 0 is the prefix for octal in C
    * https://www.youtube.com/watch?v=YCM2JReWS10
    * octal -> decimal:
    * octal:
    *  20 ->
-   *    octal binary (groups of 3) 010 000 ->
-   *        decimal [16]
+   *   multiply each digit by power of 8 corresponding to the position its in
+   *     2 * 8^1 + 0 * 8 ^ 0 = 16
+   * OR
+   *  20 ->
+   *    binary = 010 000 ->
+   *      decimal = 16
    * 
    * octal -> octal: ignore leading 0 = [20]
    *
