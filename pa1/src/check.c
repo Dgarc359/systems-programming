@@ -1,3 +1,5 @@
+#include "balance.h"
+
 int check(char str[]) {
   // returns 1 if input stream contains a balanced string
   // 0 otherwise
