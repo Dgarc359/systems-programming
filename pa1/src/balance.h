@@ -2,8 +2,8 @@
 int check(char str[]);
 void pair(char list[]);
 
-int opening_symbols[51];
-int closing_symbols[51];
+extern int opening_symbols[51];
+extern int closing_symbols[51];
 
 int *opening_symbols_pointer[51];
 opening_symbols_pointer = &opening_symbols;

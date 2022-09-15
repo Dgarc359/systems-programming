@@ -1,6 +1,9 @@
 #include "balance.h"
 
 int check(char str[]) {
+  char c = opening_symbols[0];
+  char c2 = opening_symbols[0];
+
   int length = 0;
   int check;
   for(int i = 0; check != NULL; check = opening_symbols_pointer[i], i++, length++);
