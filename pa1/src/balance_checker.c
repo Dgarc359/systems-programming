@@ -1,10 +1,11 @@
-#include <stdio.h>
+#include "balance.h"
+
 char get_word(char command[], int max_length)
 {
   char last_character;
   int i;
-  for (i = 0; i < max_length - 1 && (command[i] = getchar()) != ' ' && command[i] != '\n'; i++)
-    ;
+  for (i = 0; i < max_length - 1 && (command[i] = getchar()) != ' ' && command[i] != '\n'; i++);
+
   last_character = command[i];
   command[i] = '\0'; // end of string sign
   return last_character;
@@ -13,8 +14,8 @@ char get_line(char command[], int max_length)
 {
   char last_character;
   int i;
-  for (i = 0; i < max_length - 1 && (command[i] = getchar()) != '\n'; i++)
-    ;
+  for (i = 0; i < max_length - 1 && (command[i] = getchar()) != '\n'; i++);
+
   last_character = command[i];
   command[i] = '\0'; // end of string sign
   return last_character;
@@ -53,6 +54,7 @@ int main()
       {
         get_line(str, 400);
         printf("Checking %s...\n", str);
+        check(str);
       }
     }
     else if (equals(command, "pair"))
