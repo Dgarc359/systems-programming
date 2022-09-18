@@ -1,12 +1,13 @@
 #include "balance.h"
 
 int check(char str[]) {
-  char c = opening_symbols[0];
-  char c2 = opening_symbols[0];
+  // char c = opening_symbols[0];
+  // char c2 = opening_symbols[0];
 
   int length = 0;
   int check;
-  for(int i = 0; check != NULL; check = opening_symbols_pointer[i], i++, length++);
+  // for(int i = 0; check != NULL; check = opening_symbols_pointer[i], i++, length++);
+
   if(length == 0) {
     // use parenthesis to check balance
   } else {
@@ -17,4 +18,6 @@ int check(char str[]) {
 
   // use most recent list of pairs
   // use a stack to check the balance of opening and closing symbols
+
+  return 1;
 }

@@ -65,6 +65,7 @@ int main()
       {
         get_line(str, 400);
         printf("Pairing %s...\n", str);
+        pair(str); 
       }
     }
     else
