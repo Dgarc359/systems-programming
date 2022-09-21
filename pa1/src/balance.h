@@ -5,6 +5,10 @@ void pair(char list[]);
 extern int opening_symbols[51];
 extern int closing_symbols[51];
 
+int push(int element);
+int pop(void);
+int peek(void);
+
 // int *opening_symbols_pointer[51];
 // opening_symbols_pointer = &opening_symbols;
 

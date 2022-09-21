@@ -3,6 +3,7 @@
 int check(char str[]) {
   // char c = opening_symbols[0];
   // char c2 = opening_symbols[0];
+  printf("open: %c close: %c", opening_symbols[0], closing_symbols[0]);
 
   int length = 0;
   int check;

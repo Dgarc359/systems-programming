@@ -39,6 +39,9 @@ int main()
   char command[10];
   char str[400];
   char next_char;
+  opening_symbols[0] = '(';
+  closing_symbols[0] = ')';
+
   while (1)
   {
     next_char = get_word(command, 10);
