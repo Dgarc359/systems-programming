@@ -2,16 +2,20 @@
 int opening_symbols[51];
 int closing_symbols[51];
 
+void flush(){
+  for (int i = 0; i < 52; i++) {
+    opening_symbols[i] = NULL;
+    closing_symbols[i] = NULL;
+  }
+}
+
 void pair(char list[])
 {
   printf("test: %s\n", list);
   int opening_symbols_counter = 0;
   int closing_symbols_counter = 0;
-  
-  for (int i = 0; i < 52; i++) {
-    opening_symbols[i] = NULL;
-    closing_symbols[i] = NULL;
-  }
+
+  flush();
 
   for (int i = 0; i < 401 && list[i] != '\0'; i++)
   { // 400 is our max string size
@@ -23,8 +27,21 @@ void pair(char list[])
     {
       // this means the next value will be our closing symbol
       // take the next value and increase i so that it increases by two and skips
-      opening_symbols[opening_symbols_counter++] = list[i - 1];
-      closing_symbols[closing_symbols_counter++] = list[i + 1];
+      int opening = list[i-1];
+      int closing = list[i+1];
+
+      if(
+        opening == ' ' || opening == '\n' || opening == '\t' || opening == ',' ||
+        closing == ' ' || closing == '\n' || closing == '\t' || closing == ','
+      ) {
+        printf("You screwed up! Please input the correct chars");
+        flush();
+        return;
+      }
+      else {
+        opening_symbols[opening_symbols_counter++] = opening;
+        closing_symbols[closing_symbols_counter++] = closing;
+      }
     }
     if (i == 400) {
       opening_symbols[opening_symbols_counter] = NULL;

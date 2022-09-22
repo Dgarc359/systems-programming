@@ -1,7 +1,7 @@
 CC=gcc
 CFLAGS=-I. -g -w
 DEPS = balance.h
-OBJ = balance_checker.o pair.o check.o
+OBJ = balance_checker.o pair.o check.o stack.o
 
 %.o: %.c $(DEPS)
 	$(CC) -c -o $@ $< $(CFLAGS)
