@@ -1,5 +1,5 @@
 #include "balance.h"
-#define BUFSIZE 400
+#define BUFSIZE 401
 
 int isNotClosingSymbol(char symbol) {
   for (int i = 0; closing_symbols[i] != '\0'; i++) {
@@ -31,14 +31,17 @@ checkClosingSymbolBalances(char peeked, char check_char) {
 int check(char str[]) {
 
   char buf[BUFSIZE];
-  char* stack = buf;
 
   int bufp = 0;
   int* stackPointer = &bufp;
 
-  for(int i = 0; i <= BUFSIZE; i++)
+  for(int i = 0; i <= 400; i++)
       buf[i] = '\0';
-  printf("open: %c close: %c\n", opening_symbols[0], closing_symbols[0]);
+
+  if (opening_symbols[0] == '\0') {
+      opening_symbols[0] == '(';
+      closing_symbols[0] == ')';
+  }
 
   int length = 0;
   char check_char;
@@ -47,39 +50,30 @@ int check(char str[]) {
   
   for (int i=0; i <= length ; i++) {
     check_char = str[i];
-    printf("inside for loop\ncheck_char: %c\n", str[i]);
 
     int isNotClosingSymbolReturn = isNotClosingSymbol(check_char);
     int isNotOpeningSymbolReturn = isNotOpeningSymbol(check_char);
     if(isNotClosingSymbolReturn && !isNotOpeningSymbolReturn) { //char is opening symbol
-      printf("char is opening symbol\n");
       push(check_char, buf, stackPointer);
-      printf("pushed elem");
     } else if (!isNotClosingSymbolReturn && isNotOpeningSymbolReturn) { // char is closing symbol
-      printf("char is closing symbol\n");
       char peeked = peek(buf, stackPointer);
       int closingSymbolBalancesOpeningSymbol = checkClosingSymbolBalances(peeked, check_char);
       if (closingSymbolBalancesOpeningSymbol)
         pop(buf, stackPointer);
-    } else {
-      printf("char is neither\n");
     }
   }
 
   char peeked = peek(buf, stackPointer);
-  if (peeked == '\0') {
-    printf("balanced");
+  if (peeked == '\0')
     return 1;
-  }
-
 
   // returns 1 if input stream contains a balanced string
   // 0 otherwise
 
   // use most recent list of pairs
   // use a stack to check the balance of opening and closing symbols
-  printf("unbalanced");
-  return 0;
+  else
+    return 0;
 }
 
 int push(int element, char stack[], int* pointer){
