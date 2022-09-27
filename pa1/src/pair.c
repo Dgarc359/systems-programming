@@ -1,11 +1,11 @@
 #include "balance.h"
-int opening_symbols[51];
-int closing_symbols[51];
+char opening_symbols[52];
+char closing_symbols[52];
 
 void flush(){
   for (int i = 0; i < 52; i++) {
-    opening_symbols[i] = NULL;
-    closing_symbols[i] = NULL;
+    opening_symbols[i] = '\0';
+    closing_symbols[i] = '\0';
   }
 }
 
@@ -44,11 +44,11 @@ void pair(char list[])
       }
     }
     if (i == 400) {
-      opening_symbols[opening_symbols_counter] = NULL;
+      opening_symbols[opening_symbols_counter] = '\0';
     }
   }
 
-  for (int i = 0; i < 52 && opening_symbols[i] != NULL && closing_symbols[i] != NULL; i++)
+  for (int i = 0; i < 52 && opening_symbols[i] != '\0' && closing_symbols[i] != '\0'; i++)
   {
     printf("opening symbol: %c\n", opening_symbols[i]);
     printf("closing symbols: %c\n", closing_symbols[i]);

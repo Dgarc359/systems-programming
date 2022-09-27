@@ -2,12 +2,12 @@
 int check(char str[]);
 void pair(char list[]);
 
-extern int opening_symbols[51];
-extern int closing_symbols[51];
+extern char opening_symbols[52];
+extern char closing_symbols[52];
 
-int push(int element);
-int pop(void);
-int peek(void);
+int push(int element, char stack[], int* pointer);
+void pop(char stack[], int* pointer);
+char peek(char stack[], int* pointer);
 
 // int *opening_symbols_pointer[51];
 // opening_symbols_pointer = &opening_symbols;
