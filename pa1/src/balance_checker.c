@@ -57,7 +57,11 @@ int main()
       {
         get_line(str, 400);
         printf("Checking %s...\n", str);
-        check(str);
+        int checked = check(str);
+        if (checked)
+            printf("\nbalanced\n");
+        else
+            printf("\nunbalanced\n");
       }
     }
     else if (equals(command, "pair"))

@@ -11,7 +11,6 @@ void flush(){
 
 void pair(char list[])
 {
-  printf("test: %s\n", list);
   int opening_symbols_counter = 0;
   int closing_symbols_counter = 0;
 
@@ -48,9 +47,9 @@ void pair(char list[])
     }
   }
 
-  for (int i = 0; i < 52 && opening_symbols[i] != '\0' && closing_symbols[i] != '\0'; i++)
-  {
-    printf("opening symbol: %c\n", opening_symbols[i]);
-    printf("closing symbols: %c\n", closing_symbols[i]);
-  }
+//  for (int i = 0; i < 52 && opening_symbols[i] != '\0' && closing_symbols[i] != '\0'; i++)
+//  {
+//    printf("opening symbol: %c\n", opening_symbols[i]);
+//    printf("closing symbols: %c\n", closing_symbols[i]);
+//  }
 }
