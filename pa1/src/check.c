@@ -60,13 +60,13 @@ int check(char str[]) {
       char peeked = peek(buf, stackPointer);
       int closingSymbolBalancesOpeningSymbol = checkClosingSymbolBalances(peeked, check_char);
       if (closingSymbolBalancesOpeningSymbol)
-        pop(stack, stackPointer);
+        pop(buf, stackPointer);
     } else {
       printf("char is neither\n");
     }
   }
 
-  char peeked = peek(buf, bufp);
+  char peeked = peek(buf, stackPointer);
   if (peeked == '\0') {
     printf("balanced");
     return 1;
