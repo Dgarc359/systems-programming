@@ -93,7 +93,7 @@ void pop(char stack[], int* pointer) {
 }
 
 char peek(char stack[], int* pointer) {
-    int i;
-    for (i = 0; stack[i] != '\0' ; i++);
+    int i = *pointer;
+//    for (i = 0; stack[i] != '\0' ; i++);
     return stack[--i];
 }
