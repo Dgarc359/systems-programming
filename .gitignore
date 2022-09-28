@@ -2,7 +2,8 @@
 !*.*
 !*/
 
-autograder-pa1-Fall22/
+pa1/
+
 !Makefile
 .idea/
 
