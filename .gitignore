@@ -4,6 +4,7 @@
 
 autograder-pa1-Fall22/
 !Makefile
+.idea/
 
 .vscode/
 # Prerequisites
