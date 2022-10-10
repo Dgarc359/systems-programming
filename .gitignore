@@ -2,7 +2,11 @@
 !*.*
 !*/
 
-pa1/
+*.pdf
+*.pptx
+
+!programming-assignments/
+.DS_Store
 
 !Makefile
 .idea/
