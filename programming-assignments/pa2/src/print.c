@@ -1,6 +1,7 @@
 #include "find.h"
 
 void print_results(char* pattern, int first_occurrence, int numbered, int sorted, int partial, int reversed, int no_of_results) {
+
   char* sentences[] = (char**) malloc(no_of_results*sizeof(char*));
   for (int i = 0; i < no_of_results; i++)
     sentences[i] = strdup(lineptr[results[i]]);
