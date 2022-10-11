@@ -1,8 +1,8 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-#define MAX_LINE 1000
-char* lineptr[]; // externally defined because they're defined before main
+#include "find.h"
+char** lineptr; // externally defined because they're defined before main
 int results[MAX_LINE];
 int readlines(char* lineptr[], int nlines);
 
@@ -27,19 +27,21 @@ int get_line(char* line, int max);
 int main(int argc, char** argv) {
   char line[MAX_LINE];
   long lineno = 0;
-  int except; // 0 or 1
-  int sort; // 0 or 1
-  int reversed; // 0 or 1
-  int partial; // 0 or 1
-  int first_occurence; // 0 or 1
+  int except = 0; // 0 or 1
+  int sort = 0; // 0 or 1
+  int reversed = 0; // 0 or 1
+  int partial = 0; // 0 or 1
+  int first_occurence = 0; // 0 or 1
   int matched = 0; // 0 or 1
+  int numbered = 0;
+  int sorted = 0;
   char* pattern;
   // ... other flags
   // long lineno =0;
   int c = 0;
   // int except ma= 0; 
   int number = 0;
-  int found =0;
+  int found = 0;
     while (argc > 0 && (*++argv)[0] == '-')
       while (c = *++argv[0])
     while (--argc > 0 && (*++argv)) {
@@ -91,7 +93,7 @@ int main(int argc, char** argv) {
       // not matched
     }
   }
-  // print_results(pattern, first_occurence, numbered, sorted, partial, reversed, no_of_results);
+  print_results(pattern, first_occurence, numbered, sorted, partial, reversed, no_of_results);
   return 0;
 }
 
