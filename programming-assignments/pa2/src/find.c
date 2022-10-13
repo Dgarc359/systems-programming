@@ -42,8 +42,9 @@ int main(int argc, char** argv) {
   // int except ma= 0; 
   int number = 0;
   int found = 0;
-    while (argc > 0 && (*++argv)[0] == '-')
-      while (c = *++argv[0])
+
+//    while (argc > 0 && (*++argv)[0] == '-')
+//      while (c = *++argv[0])
     while (--argc > 0 && (*++argv)) {
       while (c = *++argv[0])
         switch (c) {

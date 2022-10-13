@@ -109,6 +109,9 @@ struct node { // self referential struct (linked list)
 
 typedef struct node node;
 
+// double * to allow changing head value?
+// manipulates head if head is null, which is why ** instead of *
+// passing by reference...
 void append(node** head, int value) { // assume list is not empty
   if((*head) == NULL) {
     (*head) = (node*) malloc(sizeof(node));
@@ -137,4 +140,4 @@ int main() {
   // append(head, 15);
   append(&head, 15); // pass by ref
 }
-
+```
