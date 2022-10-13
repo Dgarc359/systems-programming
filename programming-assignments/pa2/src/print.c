@@ -9,13 +9,12 @@ void print_results(char* pattern, int first_occurrence, int numbered, int sorted
     // call quicksort on sentences...
   } else if (reversed) {
     // reverse the sentences
-  }
-  for(int i = 0; i < no_of_results; i++){
+  } for(int i = 0; i < no_of_results; i++){
     if(numbered)
       printf("%d. ", results[i] + 1);
     if(first_occurrence) {
       printf("@%d: ", strstr(lineptr[results[i]], pattern) - lineptr[results[i]]);
     }
-    printf("%s\n", sentences[i]);
+      printf("%s\n", sentences[i]);
     }
 }
