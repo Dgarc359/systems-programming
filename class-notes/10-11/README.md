@@ -75,7 +75,7 @@ char* to_str(node* head) {
   }
   
   char* rest = to_str(head -> next);
-  char* rv = (char*) malloc(13 /* size of rv + -> (2 chars) */ + strlen(rest));
+  char* rv = (char*) malloc(13 /* size of rv(10 chars + 1 for '\0') + -> (2 chars) */ + strlen(rest));
   sprintf(rv, "%d->%s", head -> value, rest);
   return rv;
 }
