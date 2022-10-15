@@ -3,40 +3,54 @@
 #include <string.h>
 #include "find.h"
 char** lineptr; // externally defined because they're defined before main
+
+/**
+ * Track index of stdin arr of strings to print
+ */
 int results[MAX_LINE];
 int readlines(char* lineptr[], int nlines);
 
+/**
+ * check if needle is a substr of haystack, including checking for padding
+ * @param haystack
+ * @param needle
+ * @return
+ */
 char* strstr_fully_matched(char* haystack, char* needle) {
-  char* rv;
-  char* padded_needle[strlen(needle) + 3];
-  padded_needle[0] = ' ';
-  strcpy(padded_needle + 1, needle);
-  padded_needle[strlen(needle) + 1] = ' ';
-  padded_needle[strlen(needle) + 2] = '\0';
-  if(strncmp(haystack, padded_needle + 1, strlen(needle) + 1))
+	char* rv;
+	char* padded_needle[strlen(needle) + 3];
+	padded_needle[0] = ' ';
+	strcpy(padded_needle + 1, needle);
+	padded_needle[strlen(needle) + 1] = ' ';
+	padded_needle[strlen(needle) + 2] = '\0';
+	if(strncmp(haystack, padded_needle + 1, strlen(needle) + 1))
 	return haystack; // needle at the beginning
-  if((rv = strstr(haystack, padded_needle)) != NULL)
+	if((rv = strstr(haystack, padded_needle)) != NULL)
 	return rv + 1; // needle is in the middle
-  padded_needle[strlen(needle) + 1] = '\0';
-  if((rv = strstr(haystack, padded_needle)) != NULL)
+	padded_needle[strlen(needle) + 1] = '\0';
+	if((rv = strstr(haystack, padded_needle)) != NULL)
 	return rv + 1; // needle is at the end
 }
 
 int get_line(char line[], int max);
 
 int main(int argc, char** argv) {
-  char* line[MAX_LINE];
-  long lineno = 0;
+	char* line[MAX_LINE];
+	long lineno = 0;
 
-  char* pattern;
+	char* pattern;
 
-  int found = 0;
+	int found = 0;
 
 	/**
 	 * Read user flags
 	 */
 	int c = 0;
-	int flags;
+
+	/**
+	 * 8 vals in cla_flags enum
+	 */
+	long flags;
 	if (argc == 0) return 0;
 	printf("> reading user flags...\n");
 	while(--argc > 0 && (*++argv)) {
@@ -62,64 +76,65 @@ int main(int argc, char** argv) {
 		}
 	}
 
-  int nlines = readlines(line, MAX_LINE); // this function will populate lineptr[] arr
-  printf("nlines: %d\n", nlines);
-  int no_of_results = 0;
-  for(int i = 0; i< nlines; i++) {
+	int nlines = readlines(line, MAX_LINE); // this function will populate lineptr[] arr
+	printf("lines: %s", line[0]);
+	printf("nlines: %d\n", nlines);
+	int no_of_results = 0;
+	for(int i = 0; i< nlines; i++) {
 	if(flags & MATCH){
-	  if((strstr_fully_matched(line[i], pattern) != NULL) != (flags & EXCLUDE)) {
-		results[no_of_results++] = i;
-	  }
+		if((strstr_fully_matched(line[i], pattern) != NULL) != (flags & EXCLUDE))
+			results[no_of_results++] = i;
 	} else {
-        printf("in else\n");
-	  if((strstr(line[i], pattern) != NULL) != ( flags & EXCLUDE)) {
-		results[no_of_results++] = i;
-	  }
-	  // not matched
+			printf("in else\n");
+			if((strstr(line[i], pattern) != NULL) != ( flags & EXCLUDE))
+				results[no_of_results++] = i;
+		}
 	}
-  }
-  printf("\n>printing results\n");
-  printf("# of results: %d", no_of_results);
-  print_results(pattern, flags, no_of_results);
-  return 0;
+	printf("\n>printing results\n");
+	printf("# of results: %d\n", no_of_results);
+	print_results(pattern, flags, no_of_results, results);
+	return 0;
 }
 
+/**
+ * uses getchar() to get string from stdin
+ * @param s
+ * @param lim
+ * @return
+ */
 int get_line(char s[], int lim) {
-  int c, i;
+	int c, i;
 
-  for (i = 0; i < lim - 1 && (c = getchar()) != EOF && c != '\n'; i++)
+	for (i = 0; i < lim - 1 && (c = getchar()) != EOF && c != '\n'; i++)
 	s[i] = c;
-  if (c == '\n') {
+	if (c == '\n') {
 	s[i] = c;
 	i++;
-  }
-  s[i] = '\0';
-  return i;
+	}
+	s[i] = '\0';
+	return i;
 }
 
 // read input lines
 int readlines(char* lineptr[], int maxlines) {
-  int len;
-  int nlines;
+	int len;
+	int nlines;
 
-  char* p;
-  char* line[MAX_LINE];
+	char* p;
+	char* line[MAX_LINE];
 
-  nlines = 0;
+	nlines = 0;
 
-  printf("\nreading lines\n");
-  while((len = get_line(line, MAX_LINE)) > 0)
+	printf("\nreading lines\n");
+	while((len = get_line(line, MAX_LINE)) > 0)
 	if (nlines >= maxlines || (p = alloc(len)) == NULL){
-		// printf("p alloc is null\n");
-	  return -1;
+		return -1;
 	}
 	else {
-	//   printf("copying string\n");
-	  line[len - 1] = '\0'; // del \n
-	  strcpy(p, line);
-	//   printf("str copied: %s\n", p);
-	  lineptr[nlines++] = p;
+		line[len - 1] = '\0'; // del \n
+		strcpy(p, line);
+		printf("p: %s", p);
+		lineptr[nlines++] = p;
 	}
-//   printf("returning from readlines: %d\n", nlines);
-  return nlines;
+	return nlines;
 }

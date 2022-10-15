@@ -15,7 +15,7 @@ enum cla_flags {
   PARTIAL = 128,
 };
 
-void print_results(char* pattern, int flags, int no_of_results);
+void print_results(char* pattern, int flags, int no_of_results, int results[]);
 void swap(void *v[], int, int);
 char* alloc(int n);
 #define MAX_LINE 1000

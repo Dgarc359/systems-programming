@@ -6,6 +6,7 @@
 *.pptx
 
 !programming-assignments/
+cmake-build-debug/
 .DS_Store
 
 !Makefile
