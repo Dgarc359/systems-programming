@@ -212,7 +212,7 @@ int main() {
 
 ```
 
-Enumerators
+## Enumerators
 ```C
 
 
