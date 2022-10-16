@@ -79,33 +79,41 @@ int main(int argc, char** argv)
 			switch(c) {
 				case 'n':
 					flags |= NUMBER;
+					break;
 				case 'x': // TODO: f and x cannot be combined
 					flags |= EXCLUDE;
+					break;
 				case 's': // TODO: s and r cannot be combined
 					flags |= SORT;
+					break;
 				case 'r': // TODO: s and r cannot be combined
 					flags |= REVERSE;
+					break;
 				case 'm':
 					flags |= MATCH;
+					break;
 				case 'c':
 					flags |= CASE;
+					break;
 				case 'f': // TODO: f and x cannot be combined
 					flags |= FIRST;
+					break;
 				case 'p':
 					flags |= PARTIAL;
+					break;
 			}
 		}
 	}
 	//similar to #41 of Chapter 5 partII.pptx
 	int nlines = readlines(lineptr, MAX_LINES);//similar, but not the same as the slide #23 of Chapter 5 partII.pptx
 	int no_of_results = 0;
-	for(int i = 0; i < nlines;i++)
-		printf("\n%s\n", lineptr[i]);
 	for(int i = 0; i < nlines;i++){
-		if(flags & MATCH){
+		if((flags & MATCH)){
+            printf("matching??");
 			if((strstr_fully_matched(lineptr[i], pattern) != NULL) != (flags & EXCLUDE))
 				results[no_of_results++] = i;
 		}else{
+            printf("inside else\n");
 			if((strstr(lineptr[i], pattern) != NULL) != (flags & EXCLUDE))
 				results[no_of_results++] = i;
 		}
