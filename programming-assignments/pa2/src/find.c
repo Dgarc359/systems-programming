@@ -104,8 +104,7 @@ int main(int argc, char** argv)
 			}
 		}
 	}
-	//similar to #41 of Chapter 5 partII.pptx
-	int nlines = readlines(lineptr, MAX_LINES);//similar, but not the same as the slide #23 of Chapter 5 partII.pptx
+	int nlines = readlines(lineptr, MAX_LINES);
 	int no_of_results = 0;
 	for(int i = 0; i < nlines;i++){
 		if((flags & MATCH)){
