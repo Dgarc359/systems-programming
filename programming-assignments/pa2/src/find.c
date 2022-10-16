@@ -109,11 +109,11 @@ int main(int argc, char** argv)
 	int no_of_results = 0;
 	for(int i = 0; i < nlines;i++){
 		if((flags & MATCH)){
-            printf("matching??");
+			printf("matching??");
 			if((strstr_fully_matched(lineptr[i], pattern) != NULL) != (flags & EXCLUDE))
 				results[no_of_results++] = i;
 		}else{
-            printf("inside else\n");
+			printf("inside else\n");
 			if((strstr(lineptr[i], pattern) != NULL) != (flags & EXCLUDE))
 				results[no_of_results++] = i;
 		}
