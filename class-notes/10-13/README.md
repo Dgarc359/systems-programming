@@ -214,8 +214,6 @@ int main() {
 
 ## Enumerators
 ```C
-
-
 enum CLAS {
     MATCH = 1,
     CASE = 2,

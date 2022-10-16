@@ -1,22 +1,18 @@
-#include <string.h>
-#include <stdio.h>
-
-extern char** lineptr;
+#include<stdlib.h>
+#include<string.h>
+#include<stdio.h>
+char* strstr_fully_matched(char* haystack, char* needle);
+void print_results(char* pattern, long flags, int no_of_results);
+extern char*lineptr[];
 extern int results[];
 
 enum cla_flags {
-  MATCH = 1,
-  NUMBER = 2,
-  SORT = 4,
-  REVERSE = 8,
-  FIRST = 16,
-  EXCLUDE = 32,
-  CASE = 64,
-  PARTIAL = 128,
+  MATCH = 1 << 0,
+  NUMBER = 1 << 1,
+  SORT = 1 << 2,
+  REVERSE = 1 << 3,
+  FIRST = 1 << 4,
+  EXCLUDE = 1 << 5,
+  CASE = 1 << 6,
+  PARTIAL = 1 << 7,
 };
-
-void print_results(char* pattern, int flags, int no_of_results, int results[], char** line);
-void swap(void *v[], int, int);
-char* alloc(int n);
-#define MAX_LINE 1000
-

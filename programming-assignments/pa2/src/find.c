@@ -1,14 +1,15 @@
-#include <stdio.h>
-#include <stdlib.h>
-#include <string.h>
-#include "find.h"
-char** lineptr; // externally defined because they're defined before main
+#include"find.h"
+#define MAX_LINES 1000
+#define MAX_LEN 1000
+char*lineptr[MAX_LINES];
+int results[MAX_LINES];
 
-/**
- * Track index of stdin arr of strings to print
- */
-int results[MAX_LINE];
-int readlines(char *lineptr[], int nlines);
+char* str_tolower(char* input){
+	char* rv = strdup(input);
+	for(int i = 0; i < strlen(rv);i++)
+		rv[i] = tolower(rv[i]);
+	return rv;
+}
 
 /**
  * check if needle is a substr of haystack, including checking for padding
@@ -16,45 +17,65 @@ int readlines(char *lineptr[], int nlines);
  * @param needle
  * @return
  */
-char* strstr_fully_matched(char* haystack, char* needle) {
-	char* rv;
-	char* padded_needle[strlen(needle) + 3];
-	padded_needle[0] = ' ';
-	strcpy(padded_needle + 1, needle);
-	padded_needle[strlen(needle) + 1] = ' ';
-	padded_needle[strlen(needle) + 2] = '\0';
-	if(strncmp(haystack, padded_needle + 1, strlen(needle) + 1))
-	return haystack; // needle at the beginning
-	if((rv = strstr(haystack, padded_needle)) != NULL)
-	return rv + 1; // needle is in the middle
-	padded_needle[strlen(needle) + 1] = '\0';
-	if((rv = strstr(haystack, padded_needle)) != NULL)
-	return rv + 1; // needle is at the end
+
+ char *strstr_fully_matched(char *haystack, char *needle) {
+	 char *rv;
+	 char padded_needle[strlen(needle) + 3];
+	 padded_needle[0] = ' ';
+	 strcpy(padded_needle + 1, needle);
+	 padded_needle[strlen(needle) + 1] = ' ';
+	 padded_needle[strlen(needle) + 2] = '\0';
+	 if (!strncmp(haystack, padded_needle + 1, strlen(needle) + 1)) {
+		 return haystack; // needle is at the beginning
+	 }
+	 if ((rv = strstr(haystack, padded_needle)) != NULL) {
+		 return rv + 1; // needle is at the middle.
+	 }
+	 padded_needle[strlen(needle) + 1] = '\0';
+	 if ((rv = strstr(haystack, padded_needle)) != NULL && rv[strlen(padded_needle)] == '\0') {
+			return rv + 1; // needle is at the end.
+	 }
+	 return NULL;
+ }
+
+
+int getline2(char s[], int lim){
+	int c, i;
+	for(i = 0; i < lim - 1 && (c = getchar()) != EOF && c != '\n';i++)
+		s[i] = c;
+	if(c == '\n'){
+		s[i] = c;
+		i++;
+	}
+	s[i] = '\0';
+	return i;
 }
-
-int get_line(char line[], int max);
-
-int main(int argc, char** argv) {
-	char* line[MAX_LINE];
-	long lineno = 0;
-
-	char* pattern;
-
-	int found = 0;
-
-	/**
-	 * Read user flags
-	 */
+int readlines(char** lineptr, int maxlines){
+	int len, nlines;
+	char*p, line[MAX_LEN];
+	
+	nlines = 0;
+	while((len = getline2(line, MAX_LEN)) > 0)
+		if(nlines >= maxlines || (p = malloc(len)) == NULL)
+			return -1;
+		else{
+			if(line[len - 1] == '\n')
+				line[len - 1] = '\0';
+			strcpy(p, line);
+			lineptr[nlines++] = p;
+		}
+	return nlines;
+}
+int main(int argc, char** argv)
+{
+	int flags;
+	char* pattern = "in";
 	int c = 0;
-
-	/**
-	 * 8 vals in cla_flags enum
-	 */
-	long flags;
-	if (argc == 0) return 0;
-	printf("> reading user flags...\n");
+	//....
+	//handle command line arguments...
 	while(--argc > 0 && (*++argv)) {
 		while ((c = *++argv[0])) {
+			// printf("%c", c);
 			switch(c) {
 				case 'n':
 					flags |= NUMBER;
@@ -75,72 +96,20 @@ int main(int argc, char** argv) {
 			}
 		}
 	}
-
-	int nlines = readlines(line, MAX_LINE); // this function will populate lineptr[] arr
-	printf("lines: %s\n", line[0]);
-	printf("nlines: %d\n", nlines);
+	//similar to #41 of Chapter 5 partII.pptx
+	int nlines = readlines(lineptr, MAX_LINES);//similar, but not the same as the slide #23 of Chapter 5 partII.pptx
 	int no_of_results = 0;
-
-	for(int i = 0; i< nlines; i++) {
-
+	for(int i = 0; i < nlines;i++)
+		printf("\n%s\n", lineptr[i]);
+	for(int i = 0; i < nlines;i++){
 		if(flags & MATCH){
-			printf("> Checking for matches\n");
-			if((strstr_fully_matched(line[i], pattern) != NULL) != (flags & EXCLUDE))
+			if((strstr_fully_matched(lineptr[i], pattern) != NULL) != (flags & EXCLUDE))
 				results[no_of_results++] = i;
-		} 
-		else {
-			printf("in else\n");
-			if((strstr(line[i], pattern) != NULL) != ( flags & EXCLUDE))
+		}else{
+			if((strstr(lineptr[i], pattern) != NULL) != (flags & EXCLUDE))
 				results[no_of_results++] = i;
 		}
-
 	}
-
-	printf("\n>printing results\n");
-	printf("# of results: %d\n\n", no_of_results);
-	print_results(pattern, flags, no_of_results, results, &line);
+	print_results(pattern, flags, no_of_results);
 	return 0;
-}
-
-/**
- * uses getchar() to get string from stdin
- * @param s
- * @param lim
- * @return
- */
-int get_line(char s[], int lim) {
-	int c, i;
-
-	for (i = 0; i < lim - 1 && (c = getchar()) != EOF && c != '\n'; i++)
-	s[i] = c;
-	if (c == '\n') {
-	s[i] = c;
-	i++;
-	}
-	s[i] = '\0';
-	return i;
-}
-
-// read input lines
-int readlines(char* lineptr[], int maxlines) {
-	int len;
-	int nlines;
-
-	char* p;
-	char* line[MAX_LINE];
-
-	nlines = 0;
-
-	printf("\nreading lines\n");
-	while((len = get_line(line, MAX_LINE)) > 0)
-	if (nlines >= maxlines || (p = alloc(len)) == NULL){
-		return -1;
-	}
-	else {
-		line[len - 1] = '\0'; // del \n
-		strcpy(p, line);
-		printf("p: %s", p);
-		lineptr[nlines++] = p;
-	}
-	return nlines;
 }
