@@ -1,6 +1,6 @@
 #include "find.h"
 
-void print_results(char* pattern, int flags, int no_of_results, int results[]) {
+void print_results(char* pattern, int flags, int no_of_results, int results[], char** line) {
 
   char** sentences = (char**) malloc(no_of_results * sizeof(char*));
   for (int i = 0; i < no_of_results; i++)
@@ -14,7 +14,7 @@ void print_results(char* pattern, int flags, int no_of_results, int results[]) {
   for(int i = 0; i < no_of_results; i++){
     printf("\n flags & number %i\n", flags & NUMBER);
     if(flags & NUMBER)
-      printf("%d. ", results[i] + 1);
+      printf("%d. ", *line[results[i] + 1]);
     if(flags & FIRST) {
     //   printf("@%d: ", strstr(lineptr[results[i]], pattern) - lineptr[results[i]]);
     }

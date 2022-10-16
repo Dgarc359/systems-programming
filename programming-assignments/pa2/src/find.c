@@ -77,22 +77,28 @@ int main(int argc, char** argv) {
 	}
 
 	int nlines = readlines(line, MAX_LINE); // this function will populate lineptr[] arr
-	printf("lines: %s", line[0]);
+	printf("lines: %s\n", line[0]);
 	printf("nlines: %d\n", nlines);
 	int no_of_results = 0;
+
 	for(int i = 0; i< nlines; i++) {
-	if(flags & MATCH){
-		if((strstr_fully_matched(line[i], pattern) != NULL) != (flags & EXCLUDE))
-			results[no_of_results++] = i;
-	} else {
+
+		if(flags & MATCH){
+			printf("> Checking for matches\n");
+			if((strstr_fully_matched(line[i], pattern) != NULL) != (flags & EXCLUDE))
+				results[no_of_results++] = i;
+		} 
+		else {
 			printf("in else\n");
 			if((strstr(line[i], pattern) != NULL) != ( flags & EXCLUDE))
 				results[no_of_results++] = i;
 		}
+
 	}
+
 	printf("\n>printing results\n");
-	printf("# of results: %d\n", no_of_results);
-	print_results(pattern, flags, no_of_results, results);
+	printf("# of results: %d\n\n", no_of_results);
+	print_results(pattern, flags, no_of_results, results, &line);
 	return 0;
 }
 
